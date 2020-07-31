@@ -12,7 +12,7 @@ const cors = require('cors');
 
 //import routes
 const authRoute = require('./routes/auth');
-const postRoute = require('./routes/posts');
+const timesheetRoute = require('./routes/timesheet');
 
 dotenv.config();
 
@@ -46,7 +46,7 @@ app.use(express.static(path.join(__dirname, '/dist/')));
 
 //Route Middlewhare
 app.use('/api/user', authRoute);
-app.use('/api/posts', postRoute);
+app.use('/api/timesheet', timesheetRoute);
 
 // https://www.youtube.com/watch?v=jF5pFmLJwWs
 // Modern Web Design Patterns in Angular 8 : Using Express.js and Node.js to Serve Angular
