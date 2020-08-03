@@ -11,8 +11,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 
 import { AuthModule } from './auth/auth.module';
-import { SocketService } from './service/socket.service';
-import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +18,7 @@ import { ChatComponent } from './chat/chat.component';
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    AuthComponent,
-    ChatComponent
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +27,7 @@ import { ChatComponent } from './chat/chat.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [SocketService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
