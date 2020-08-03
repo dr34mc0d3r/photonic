@@ -45,7 +45,7 @@ export class AuthService {
     localStorage.removeItem('auth_tkn');
     localStorage.removeItem('auth_meta');
 
-    console.log('logout hit', this.decodedToken );
+    console.log('logout hit ------ ', this.decodedToken );
 
     this.decodedToken = new DecodedToken();
   }
@@ -68,5 +68,10 @@ export class AuthService {
 
   public getUsername(): string {
     return this.decodedToken.name;
+  }
+
+  public getUserID(): any {
+    console.log("this.decodedToken _id: " , this.decodedToken['_id']);
+    // return this.decodedToken.
   }
 }
