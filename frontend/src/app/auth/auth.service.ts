@@ -63,6 +63,7 @@ export class AuthService {
     }else{
       return false;
     }
+    // return true false if expired
     // return moment().isBefore(moment.unix(this.decodedToken.exp));
   }
 
@@ -71,7 +72,6 @@ export class AuthService {
   }
 
   public getUserID(): any {
-    console.log("this.decodedToken _id: " , this.decodedToken['_id']);
-    // return this.decodedToken.
+    return this.decodedToken['_id'];
   }
 }

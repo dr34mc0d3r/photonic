@@ -1,0 +1,59 @@
+<p>timesheet works!</p>
+<br />
+--{{userID}}--<br />
+<a routerLink="/profile">Profile</a>
+
+
+<!-- login.component.html -->
+
+
+
+<div class="container">
+
+  <form [formGroup]="itemForm" (ngSubmit)="saveItem()">
+    <h5>Timesheet Item {{ todayDateValue }}</h5>
+
+    <div>
+      <div *ngIf="notify" class="alert alert-success">
+        {{ notify }}
+      </div>
+      <div *ngIf="errors.length > 0" class="alert alert-danger">
+        <p *ngFor="let error of errors">
+          {{ error }}
+        </p>
+      </div>
+    </div>
+    <div class="row">
+
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <input placeholder="Start Time" type="time" min="00:00" max="23:00" required class="form-control" formControlName="start_time">
+        </div>
+      </div>
+
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <input placeholder="End Time" type="time" class="form-control" formControlName="end_time">
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="form-group">
+          <input placeholder="Discription" type="discription" class="form-control" formControlName="discription">
+        </div>
+      </div>
+
+      <div class="col-md-1">
+        <div class="form-group">
+          <button #saveBtn [disabled]="!itemForm.valid" type="submit" class="btn btn-warning">Save</button>
+        </div>
+      </div>
+
+
+    </div><!-- row -->
+
+  </form>
+
+</div>

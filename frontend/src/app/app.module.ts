@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 
 import { AuthModule } from './auth/auth.module';
+import { TimesheetComponent } from './CCCCCtimesheet/timesheet.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,15 @@ import { AuthModule } from './auth/auth.module';
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    AuthComponent
+    AuthComponent,
+    TimesheetComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],
