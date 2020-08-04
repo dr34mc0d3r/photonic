@@ -11,7 +11,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthComponent } from './auth/auth.component';
 
 import { AuthModule } from './auth/auth.module';
-import { TimesheetComponent } from './CCCCCtimesheet/timesheet.component';
+import { TimesheetModule } from './timesheet/timesheet.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,7 @@ import { TimesheetComponent } from './CCCCCtimesheet/timesheet.component';
     HeaderComponent,
     HomeComponent,
     ProfileComponent,
-    AuthComponent,
-    TimesheetComponent
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +27,8 @@ import { TimesheetComponent } from './CCCCCtimesheet/timesheet.component';
     AuthModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TimesheetModule
   ],
   providers: [],
   bootstrap: [AppComponent]
