@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     res.json({posts:{title: "sadasddadaddas", description: "dfsdfsdf"}});
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', verifyToken, (req, res) => {
 
     //validate before save
     const {error} = timesheetItemValidation(req.body);
