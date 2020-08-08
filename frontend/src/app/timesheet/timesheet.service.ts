@@ -22,7 +22,7 @@ export class TimesheetService {
   }
 
   public save(formData: any): Observable<any> {
-    const URI = this.uriseg + '/add';
+    const URI = this.uriseg + 'add';
     let newUser = {
       "start_time": formData.start_time,
       "end_time": formData.end_time,

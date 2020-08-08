@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../auth/auth.service';
+import { TimesheetService } from '../timesheet.service';
 
 @Component({
   selector: 'app-timesheet',
@@ -19,7 +20,7 @@ export class TimesheetComponent implements OnInit {
   public todayDateValue: string;
 
 
-  constructor(private auth: AuthService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private auth: AuthService, private tsService: TimesheetService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) {
     this.userID = this.auth.getUserID();
     this.shortDate();
     this.notify = '';
@@ -90,15 +91,14 @@ export class TimesheetComponent implements OnInit {
     this.errors = [];
     this.itemForm.value.user_id = this.userID;
     console.log(this.itemForm.value);
-    // this.auth.login(this.itemForm.value)
-    //   .subscribe((token) => {
-    //     // this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
-    //     this.router.navigate(['/profile']);
-    //   },
-    //     (errorResponse) => {
-    //       console.log(errorResponse);
-    //       this.errors.push(errorResponse.error.error);
-    //     });
+    this.tsService.save(this.itemForm.value)
+      .subscribe((token) => {
+        console.log('saved');
+      },
+        (errorResponse) => {
+          console.log(errorResponse);
+          this.errors.push(errorResponse.error.error);
+        });
   }
 
 }
