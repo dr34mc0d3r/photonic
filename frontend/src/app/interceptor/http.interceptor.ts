@@ -21,7 +21,7 @@ export class AppHttpInterceptor implements HttpInterceptor {
 
     if (token != null) {
       authReq = req.clone({ headers: req.headers.set(TOKEN_HEADER_KEY, token) });
-      console.log("AppHttpInterceptor: ", req, token);
+      // console.log("AppHttpInterceptor: ", req, token);
     }
 
     return next.handle(authReq);

@@ -18,13 +18,11 @@ export class TimesheetComponent implements OnInit {
 
   public userID: string = '';
   public todayDateValue: string;
-
+  public timesheetData: any = [];
 
   constructor(private auth: AuthService, private tsService: TimesheetService, private router: Router, private fb: FormBuilder, private route: ActivatedRoute) {
     this.userID = this.auth.getUserID();
     this.shortDate();
-    this.notify = '';
-    this.errors.push('ffsdfdssdfsd sdfs sfsdf');
   }
 
   public shortDate() {
@@ -72,6 +70,7 @@ export class TimesheetComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.timesheet();
   }
 
   isValidInput(fieldName): boolean {
@@ -93,9 +92,26 @@ export class TimesheetComponent implements OnInit {
     console.log(this.itemForm.value);
     this.tsService.save(this.itemForm.value)
       .subscribe((token) => {
-        console.log('saved');
+        this.notify = 'Entry Saved';
+        this.timesheet();
       },
         (errorResponse) => {
+          console.log(errorResponse);
+          this.errors.push(errorResponse.error.error);
+        });
+  }
+
+  public timesheet() {
+    const user_id = this.auth.getUserID();
+    this.errors = [];
+
+    this.tsService.timesheet(user_id)
+      .subscribe(
+        data => {
+          this.timesheetData = data;
+          console.log(data);
+        },
+        errorResponse => {
           console.log(errorResponse);
           this.errors.push(errorResponse.error.error);
         });
