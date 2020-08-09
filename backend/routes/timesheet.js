@@ -2,32 +2,40 @@ const router = require('express').Router();
 const verifyToken = require('./verifyToken');
 
 const TimesheetItem = require('../model/TimesheetItem');
+const ObjectId = require("mongodb").ObjectID;
 const { timesheetItemValidation } = require('../validation');
 
 
 // get list of all timesheet entries
-router.get('/', (req, res) => {
-    // router.get('/', verifyToken, (req, res) => {
 
-    let itemsList = [];
-    TimesheetItem.find({}, function (err, items) {
-        if (err) {
-            next(err);
-        } else {
-            for (let item of items) {
-                itemsList.push({
-                    user_id: item.user_id,
-                    start_time: item.start_time,
-                    end_time: item.end_time,
-                    discription: item.discription,
-                    date: item.date,
-                    _id: item._id
-                });
-            }
-            res.json({ status: "success", message: "Items list found", data: { items: itemsList } });
+router.get('/:id', verifyToken, (req, res) => {
 
+    TimesheetItem.find({ "user_id": new ObjectId(req.params.id) }, (error, result) => {
+        if(error) {
+            return res.status(500).send(error);
         }
+        res.send(result);
     });
+
+    // let itemsList = [];
+    // TimesheetItem.find({}, function (err, items) {
+    //     if (err) {
+    //         next(err);
+    //     } else {
+    //         for (let item of items) {
+    //             itemsList.push({
+    //                 user_id: item.user_id,
+    //                 start_time: item.start_time,
+    //                 end_time: item.end_time,
+    //                 discription: item.discription,
+    //                 date: item.date,
+    //                 _id: item._id
+    //             });
+    //         }
+    //         res.json({ status: "success", message: "Items list found", data: { items: itemsList } });
+
+    //     }
+    // });
 });
 
 router.post('/add', verifyToken, (req, res) => {
