@@ -16,7 +16,7 @@ class DecodedToken {
 })
 export class AuthService {
 
-  private uriseg = 'http://photonic.ddns.net/main/api/user';
+  private uriseg = 'https://photonic.ddns.net/main/api/user';
   private decodedToken: DecodedToken;
 
   constructor(private http: HttpClient) {

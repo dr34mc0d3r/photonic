@@ -2,7 +2,10 @@
 
 
 
-const express = require('express');
+const app = require('express')();
+const https = require('https');
+const fs = require('fs');
+
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -63,7 +66,13 @@ app.get('/app', (req, res) => {
 
 
 const port = 3002;
-app.listen(port, err => {
+// we will pass our 'app' to 'https' server
+https.createServer({
+    key: fs.readFileSync('/etc/ssl/private/apache-selfsigned.key'),
+    cert: fs.readFileSync('/etc/ssl/certs/apache-selfsigned.crt'),
+    passphrase: ''
+}, app)
+.listen(port, err => {
     if (err) {
         return console.log("Error: ", err);
     }

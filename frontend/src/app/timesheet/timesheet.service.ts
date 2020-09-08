@@ -20,7 +20,7 @@ class DecodedToken {
 })
 export class TimesheetService {
 
-  private uriseg = 'http://photonic.ddns.net/main/api/timesheet';
+  private uriseg = 'https://photonic.ddns.net/main/api/timesheet';
 
   constructor(private http: HttpClient) {
 
